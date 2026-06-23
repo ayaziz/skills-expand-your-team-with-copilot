@@ -23,6 +23,58 @@ The project requires the following Python packages:
 
 These dependencies will be installed when you run `pip install -r src/requirements.txt`
 
+## Docker Deployment
+
+### Running with Docker Compose
+
+The project includes Docker and Docker Compose configuration for containerized local development and deployment.
+
+#### Prerequisites
+- Docker and Docker Compose installed on your system
+
+#### Quick Start
+
+1. Build and start the services:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+2. The application will be available at:
+   - Web API: http://localhost:8000
+   - API documentation: http://localhost:8000/docs
+   - MongoDB: localhost:27017
+
+3. To stop the services:
+
+   ```bash
+   docker-compose down
+   ```
+
+#### Development with Docker Compose
+
+The Docker Compose configuration includes hot-reload for development:
+
+```bash
+# Start services with auto-reload
+docker-compose up
+
+# View logs
+docker-compose logs -f web
+
+# Stop services
+docker-compose down
+```
+
+#### Production Deployment
+
+For production deployment, you can use the Dockerfile directly:
+
+```bash
+docker build -t mergington-api .
+docker run -p 8000:8000 -e MONGODB_URI=<production-db-uri> mergington-api
+```
+
 ## Debugging
 
 ### Running the website locally
